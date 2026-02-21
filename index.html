@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Shortcut Aplikasi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e6ffcc 0%, #b7e07a 40%, #ffe066 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .shortcut-menu-bar {
+            display: flex;
+            gap: 32px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(44,62,80,0.13);
+            padding: 32px 48px;
+            align-items: center;
+        }
+        .shortcut-menu-bar a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            color: #1764d6;
+            font-size: 24px;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .shortcut-menu-bar a:hover {
+            color: #198754;
+            transform: scale(1.07);
+        }
+        .shortcut-menu-bar img {
+            width: 48px;
+            height: 48px;
+        }
+        .shortcut-menu-bar a.lcs {
+            color: #198754;
+        }
+    </style>
+</head>
+<body>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tampilkan login jika belum login
+            if (localStorage.getItem('menuShortcutLoggedIn') === 'true') {
+                document.getElementById('login-wrapper').style.display = 'none';
+                document.getElementById('menu-bar').style.display = 'flex';
+            } else {
+                document.getElementById('login-wrapper').style.display = 'flex';
+                document.getElementById('menu-bar').style.display = 'none';
+            }
+            // Tekan Enter untuk login
+            document.getElementById('username').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') login();
+            });
+            document.getElementById('password').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') login();
+            });
+        });
+        </script>
+    <div id="login-wrapper" style="display:flex;justify-content:center;align-items:center;min-height:100vh;width:100vw;position:fixed;top:0;left:0;z-index:1000;background:transparent;">
+        <div id="login-container" style="background:rgba(255,255,255,0.97);box-shadow:0 4px 16px rgba(44,62,80,0.13);border-radius:16px;padding:18px 22px;display:flex;flex-direction:column;align-items:center;gap:12px;max-width:320px;width:100%;animation:fadeInLogin 1.2s;">
+            <div style="margin-bottom:4px;">
+                <img src="https://img.icons8.com/fluency/64/cactus.png" alt="Cactus Icon" style="width:40px;height:40px;animation:loginBounce 1.2s infinite alternate;">
+            </div>
+            <div id="datetime-info" style="font-size:14px;color:#1764d6;font-weight:600;margin-bottom:2px;letter-spacing:0.2px;"></div>
+                <script>
+                function updateDateTime() {
+                    var dt = new Date();
+                    var days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+                    var months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+                    var day = days[dt.getDay()];
+                    var date = dt.getDate();
+                    var month = months[dt.getMonth()];
+                    var year = dt.getFullYear();
+                    var hours = String(dt.getHours()).padStart(2,'0');
+                    var minutes = String(dt.getMinutes()).padStart(2,'0');
+                    var seconds = String(dt.getSeconds()).padStart(2,'0');
+                    var formatted = `${day}, ${date} ${month} ${year} | ${hours}:${minutes}:${seconds}`;
+                    document.getElementById('datetime-info').textContent = formatted;
+                }
+                setInterval(updateDateTime, 1000);
+                updateDateTime();
+                </script>
+            <h2 style="margin-bottom:6px;color:#1764d6;font-weight:800;font-size:1.2rem;letter-spacing:0.5px;">Selamat Datang</h2>
+            <div style="color:#888;font-size:13px;margin-bottom:4px;">Masuk untuk akses aplikasi</div>
+            <input type="text" id="username" placeholder="Username" style="font-size:15px;padding:8px 12px;border-radius:8px;border:1.5px solid #b7e07a;width:100%;margin-bottom:6px;box-shadow:0 1px 4px #e6ffcc33;transition:border 0.2s,transform 0.2s;">
+            <input type="password" id="password" placeholder="Password" style="font-size:15px;padding:8px 12px;border-radius:8px;border:1.5px solid #b7e07a;width:100%;margin-bottom:6px;box-shadow:0 1px 4px #e6ffcc33;transition:border 0.2s,transform 0.2s;">
+            <button onclick="login()" style="font-size:15px;padding:8px 18px;border-radius:8px;background:linear-gradient(90deg,#1764d6,#2d8cff);color:#fff;font-weight:700;border:none;cursor:pointer;box-shadow:0 2px 8px #1764d633;letter-spacing:0.2px;transition:background 0.2s,transform 0.2s;">🔒 Login</button>
+            <div id="login-error" style="color:#e74c3c;font-size:14px;font-weight:600;display:none;margin-top:4px;"></div>
+        </div>
+    </div>
+    <style>
+    @media (max-width: 480px) {
+        #login-container { padding: 10px 4px; max-width: 98vw; }
+        #login-container input, #login-container button { font-size:13px !important; }
+    }
+    </style>
+    <style>
+    @keyframes fadeInLogin {
+        from { opacity: 0; transform: translateY(-40px) scale(0.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes loginBounce {
+        0% { transform: scale(1) rotate(-2deg); }
+        50% { transform: scale(1.08) rotate(2deg); }
+        100% { transform: scale(1) rotate(-2deg); }
+    }
+    #login-container input:focus {
+        border-color: #1764d6;
+        outline: none;
+    }
+    #login-container button:hover {
+        background:linear-gradient(90deg,#2d8cff,#1764d6);
+        transform:scale(1.04);
+    }
+    </style>
+    <div style="width:100%;max-width:700px;margin:auto;">
+        <div id="datetime-info-menu" style="font-size:30px;font-weight:700;margin-bottom:18px;letter-spacing:0.2px;text-align:center;display:none;background:linear-gradient(90deg,#e6ffcc,#ffe066);border-radius:12px;padding:12px 0;color:#198754;box-shadow:0 2px 8px #b7e07a33;">
+            <div id="datetime-info-menu-content" style="font-size:18px;color:#1764d6;font-weight:600;margin-bottom:2px;letter-spacing:0.2px;"></div>
+        </div>
+        <div class="shortcut-menu-bar" id="menu-bar" style="display:none;">
+            <a href="https://nadine15072016.github.io/Ghostscript2/" title="SiPrO (LTT)" target="_blank">
+                <img src="https://img.icons8.com/fluency/48/cactus.png" alt="SiPrO Icon">
+                SiPrO (LTT)
+            </a>
+            <a href="https://nadine15072016.github.io/Ghostscript3/" title="Eviden LCS" class="lcs" target="_blank">
+                <img src="https://img.icons8.com/color/48/leaf.png" alt="LCS Icon">
+                LCS Digital
+            </a>
+            <a href="https://dev.epusluh.id" title="Portal Dev ePusluh" target="_blank" class="epusluh">
+                <img src="https://img.icons8.com/color/48/globe--v2.png" alt="ePusluh Icon">
+                Portal ePusluh
+            </a>
+        </div>
+    </div>
+    <script>
+    function login() {
+        var user = document.getElementById('username').value.trim();
+        var pass = document.getElementById('password').value.trim();
+        var error = document.getElementById('login-error');
+        // Username dan password bisa disesuaikan
+        if(user === 'admin' && pass === 'admin123') {
+            document.getElementById('login-wrapper').style.display = 'none';
+            document.getElementById('menu-bar').style.display = 'flex';
+            localStorage.setItem('menuShortcutLoggedIn', 'true');
+            document.getElementById('datetime-info-menu').style.display = 'block';
+            updateDateTimeMenu();
+        } else {
+            error.style.display = 'block';
+            error.textContent = 'Username atau password salah!';
+        }
+    }
+    function updateDateTimeMenu() {
+        var dt = new Date();
+        var days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+        var months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+        var day = days[dt.getDay()];
+        var date = dt.getDate();
+        var month = months[dt.getMonth()];
+        var year = dt.getFullYear();
+        var hours = String(dt.getHours()).padStart(2,'0');
+        var minutes = String(dt.getMinutes()).padStart(2,'0');
+        var seconds = String(dt.getSeconds()).padStart(2,'0');
+        var formatted = `${day}, ${date} ${month} ${year} | ${hours}:${minutes}:${seconds}`;
+        var el = document.getElementById('datetime-info-menu-content');
+        if(el) el.textContent = formatted;
+    }
+    setInterval(updateDateTimeMenu, 1000);
+    if(localStorage.getItem('menuShortcutLoggedIn') === 'true') {
+        document.getElementById('datetime-info-menu').style.display = 'block';
+        updateDateTimeMenu();
+    }
+    </script>
+    <div style="position:fixed;bottom:8px;left:0;width:100vw;text-align:center;font-size:11px;color:#888;letter-spacing:0.2px;z-index:9999;pointer-events:none;">
+        <span style="font-weight:600;color:#1764d6;">Create and Development by :</span>
+        <span style="font-weight:700;color:#198754;"> GHOSTSCRIPT Team @2026</span>
+        <span style="font-size:11px;color:#1764d6;"> # supriantozero@gmail.com</span>
+    </div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GhostScrip Menu</title>
+    <title>Menu Shortcut Aplikasi</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -102,6 +102,19 @@
     @media (max-width: 480px) {
         #login-container { padding: 10px 4px; max-width: 98vw; }
         #login-container input, #login-container button { font-size:13px !important; }
+        #user-avatar-corner {
+            top: 8px !important;
+            right: 8px !important;
+            padding: 4px 8px !important;
+            font-size: 14px !important;
+        }
+        #user-avatar-corner img {
+            width: 28px !important;
+            height: 28px !important;
+        }
+        #user-name-avatar {
+            font-size: 14px !important;
+        }
     }
     </style>
     <style>
@@ -123,6 +136,11 @@
         transform:scale(1.04);
     }
     </style>
+    <!-- Avatar User di sudut kanan atas -->
+    <div id="user-avatar-corner" style="position:fixed;top:18px;right:18px;z-index:1100;display:none;align-items:center;gap:10px;background:rgba(255,255,255,0.92);border-radius:24px;padding:8px 16px;box-shadow:0 2px 8px #1764d633;">
+        <img src="https://img.icons8.com/fluency/48/user-male-circle.png" alt="User Avatar" style="width:40px;height:40px;border-radius:50%;box-shadow:0 2px 8px #1764d633;">
+        <span id="user-name-avatar" style="font-weight:700;color:#1764d6;font-size:18px;">Tri Febrianti, A.Md</span>
+    </div>
     <div style="width:100%;max-width:700px;margin:auto;">
         <div id="datetime-info-menu" style="font-size:30px;font-weight:700;margin-bottom:18px;letter-spacing:0.2px;text-align:center;display:none;background:linear-gradient(90deg,#e6ffcc,#ffe066);border-radius:12px;padding:12px 0;color:#198754;box-shadow:0 2px 8px #b7e07a33;">
             <div id="datetime-info-menu-content" style="font-size:18px;color:#1764d6;font-weight:600;margin-bottom:2px;letter-spacing:0.2px;"></div>
@@ -152,8 +170,12 @@
             document.getElementById('login-wrapper').style.display = 'none';
             document.getElementById('menu-bar').style.display = 'flex';
             localStorage.setItem('menuShortcutLoggedIn', 'true');
+            localStorage.setItem('menuShortcutUsername', 'Tri Febrianti, A.Md');
             document.getElementById('datetime-info-menu').style.display = 'block';
             updateDateTimeMenu();
+            // Tampilkan avatar user di sudut
+            document.getElementById('user-avatar-corner').style.display = 'flex';
+            document.getElementById('user-name-avatar').textContent = 'Tri Febrianti, A.Md';
         } else {
             error.style.display = 'block';
             error.textContent = 'Username atau password salah!';
@@ -178,6 +200,10 @@
     if(localStorage.getItem('menuShortcutLoggedIn') === 'true') {
         document.getElementById('datetime-info-menu').style.display = 'block';
         updateDateTimeMenu();
+        // Tampilkan avatar user di sudut jika sudah login
+        document.getElementById('user-avatar-corner').style.display = 'flex';
+        var username = localStorage.getItem('menuShortcutUsername') || 'Tri Febrianti, A.Md';
+        document.getElementById('user-name-avatar').textContent = username;
     }
     </script>
     <div style="position:fixed;bottom:8px;left:0;width:100vw;text-align:center;font-size:11px;color:#888;letter-spacing:0.2px;z-index:9999;pointer-events:none;">
@@ -187,4 +213,3 @@
     </div>
 </body>
 </html>
-

@@ -16,21 +16,23 @@
         }
         .shortcut-menu-bar {
             display: flex;
-            gap: 32px;
+            flex-wrap: wrap;
+            gap: 24px;
             background: rgba(255,255,255,0.95);
             border-radius: 18px;
             box-shadow: 0 4px 24px rgba(44,62,80,0.13);
-            padding: 32px 48px;
+            padding: 24px 16px;
             align-items: center;
+            justify-content: center;
         }
         .shortcut-menu-bar a {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
             font-weight: 700;
             color: #1764d6;
-            font-size: 24px;
+            font-size: 20px;
             transition: color 0.2s, transform 0.2s;
         }
         .shortcut-menu-bar a:hover {
@@ -38,11 +40,39 @@
             transform: scale(1.07);
         }
         .shortcut-menu-bar img {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
         }
         .shortcut-menu-bar a.lcs {
             color: #198754;
+        }
+        @media (max-width: 600px) {
+            body {
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+            .shortcut-menu-bar {
+                flex-direction: column;
+                gap: 12px;
+                padding: 12px 4px;
+                border-radius: 10px;
+                width: 98vw;
+                box-sizing: border-box;
+            }
+            .shortcut-menu-bar a {
+                font-size: 16px;
+                gap: 8px;
+            }
+            .shortcut-menu-bar img {
+                width: 28px;
+                height: 28px;
+            }
+        }
+        @media (max-width: 400px) {
+            .shortcut-menu-bar {
+                padding: 6px 2px;
+                border-radius: 6px;
+            }
         }
     </style>
 </head>
@@ -114,6 +144,21 @@
         }
         #user-name-avatar {
             font-size: 14px !important;
+        }
+        .shortcut-menu-bar {
+            flex-direction: column;
+            gap: 8px;
+            padding: 8px 2px;
+            border-radius: 8px;
+            width: 98vw;
+        }
+        .shortcut-menu-bar a {
+            font-size: 14px;
+            gap: 6px;
+        }
+        .shortcut-menu-bar img {
+            width: 24px;
+            height: 24px;
         }
     }
     </style>

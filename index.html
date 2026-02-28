@@ -16,30 +16,57 @@
         }
         .shortcut-menu-bar {
             display: flex;
-            gap: 32px;
+            gap: 24px;
             background: rgba(255,255,255,0.95);
             border-radius: 18px;
             box-shadow: 0 4px 24px rgba(44,62,80,0.13);
-            padding: 32px 48px;
+            padding: 32px 16vw;
             align-items: center;
+            max-width: 1100px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            box-sizing: border-box;
         }
-        .shortcut-menu-bar a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            color: #1764d6;
-            font-size: 24px;
-            transition: color 0.2s, transform 0.2s;
+        @media (max-width: 900px) {
+            .shortcut-menu-bar {
+                padding: 24px 8vw;
+                gap: 12px;
+                border-radius: 12px;
+            }
+            .shortcut-menu-bar a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                justify-content: center;
+                text-align: center !important;
+                text-decoration: none !important;
+                font-family: 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
+                font-weight: 900 !important;
+                font-style: normal;
+                color: #14213d;
+                font-size: 38px;
+                letter-spacing: 0.7px;
+                text-shadow: 0 2px 8px rgba(44,62,80,0.12), 0 0 1px #fff;
+                transition: color 0.18s, transform 0.18s, text-shadow 0.18s;
+                border-radius: 12px;
+                padding: 10px 22px;
+                background: transparent;
         }
+    } /* <-- Add this closing brace for the media query */
         .shortcut-menu-bar a:hover {
             color: #198754;
-            transform: scale(1.07);
+            background: #e6ffcc;
+            text-shadow: 0 4px 16px #b7e07a33;
+            transform: scale(1.08);
         }
         .shortcut-menu-bar img {
-            width: 48px;
-            height: 48px;
+            width: 72px;
+            height: 72px;
+            filter: drop-shadow(0 2px 12px #b7e07a33);
+            margin-bottom: 12px;
         }
         .shortcut-menu-bar a.lcs {
             color: #198754;
@@ -146,15 +173,27 @@
             <div id="datetime-info-menu-content" style="font-size:18px;color:#1764d6;font-weight:600;margin-bottom:2px;letter-spacing:0.2px;"></div>
         </div>
         <div class="shortcut-menu-bar" id="menu-bar" style="display:none;">
-            <a href="https://nadine15072016.github.io/Ghostscript2/" title="SiPrO (LTT)" target="_blank">
+            <a href="https://nadine15072016.github.io/Ghostscript4/" title="SiPrO (LTT) Semumu" target="_blank" style="font-family:'Montserrat','Segoe UI',Arial,sans-serif;font-weight:900 !important;font-style:normal;text-decoration:none !important;">
                 <img src="https://img.icons8.com/fluency/48/cactus.png" alt="SiPrO Icon">
-                SiPrO (LTT)
+                SiPrO (LTT) Semumu
             </a>
-            <a href="https://nadine15072016.github.io/Ghostscript3/" title="Eviden LCS" class="lcs" target="_blank">
+            <a href="../2. SiPro LTT_Belui/index.html" title="SiPro LTT Belui" target="_blank" style="font-family:'Montserrat','Segoe UI',Arial,sans-serif;font-weight:900 !important;font-style:normal;">
+                            <a href="../2. SiPro LTT_Belui/index.html" title="SiPro LTT Belui" target="_blank" style="font-family:'Montserrat','Segoe UI',Arial,sans-serif;font-weight:900 !important;font-style:normal;text-decoration:none !important;">
+                <img src="https://img.icons8.com/fluency/48/cactus.png" alt="SiPro LTT Belui Icon">
+                SiPro (LTT) Belui
+            </a>
+            <a href="../MAP/index.html" title="Peta" target="_blank" style="font-family:'Montserrat','Segoe UI',Arial,sans-serif;font-weight:900 !important;font-style:normal;">
+                            <a href="../MAP/index.html" title="Peta" target="_blank" style="font-family:'Montserrat','Segoe UI',Arial,sans-serif;font-weight:900 !important;font-style:normal;text-decoration:none !important;">
+                <img src="https://img.icons8.com/fluency/96/map-marker.png" alt="Peta Icon">
+                Peta
+            </a>
+            <a href="https://nadine15072016.github.io/Ghostscript3/" title="Eviden LCS" class="lcs" target="_blank" style="font-family:'Montserrat','Segoe UI',Arial,sans-serif;font-weight:900 !important;font-style:normal;">
+                            <a href="https://nadine15072016.github.io/Ghostscript3/" title="Eviden LCS" class="lcs" target="_blank" style="font-family:'Montserrat','Segoe UI',Arial,sans-serif;font-weight:900 !important;font-style:normal;text-decoration:none !important;">
                 <img src="https://img.icons8.com/color/48/leaf.png" alt="LCS Icon">
                 LCS Digital
             </a>
-            <a href="https://dev.epusluh.id" title="Portal Dev ePusluh" target="_blank" class="epusluh">
+            <a href="https://dev.epusluh.id" title="Portal Dev ePusluh" target="_blank" class="epusluh" style="font-family:'Montserrat','Segoe UI',Arial,sans-serif;font-weight:900 !important;font-style:normal;">
+                            <a href="https://dev.epusluh.id" title="Portal Dev ePusluh" target="_blank" class="epusluh" style="font-family:'Montserrat','Segoe UI',Arial,sans-serif;font-weight:900 !important;font-style:normal;text-decoration:none !important;">
                 <img src="https://img.icons8.com/color/48/globe--v2.png" alt="ePusluh Icon">
                 Portal ePusluh
             </a>
